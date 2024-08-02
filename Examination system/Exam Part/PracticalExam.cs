@@ -8,15 +8,32 @@ namespace Examination_system.Exam_Part
 {
     internal class PracticalExam : Exam
     {
-        public MCQ[] MCQ_Questions {  get; set; }
+        public MCQ[]? MCQ_Questions {  get; set; }
 
         public PracticalExam()
         {
-            MCQ_Questions = new MCQ[NumbersOfQuestion]; 
+            MCQ_Questions = new MCQ[NumberOfQuestion];
         }
-        public override void ShowExam()
+        public override void BuildExam()
         {
-            Console.WriteLine("Show Practical Exam.");
+            MCQ_Questions = new MCQ[NumberOfQuestion];
+
+            for(int i = 0; i < NumberOfQuestion; i++)
+            {
+                Console.Clear();
+                MCQ_Questions[i] = new MCQ();
+                MCQ_Questions[i] = Helper.BuildMCQ_Q();
+            }
+        }
+
+        public override void ShowExamResult()
+        {
+            
+        }
+
+        public override void StartExam()
+        {
+            
         }
     }
 }

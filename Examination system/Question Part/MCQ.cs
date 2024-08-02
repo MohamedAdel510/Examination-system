@@ -1,26 +1,30 @@
-﻿using System;
+﻿using Examination_system.Question_Part;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Examination_system
 {
-    internal class MCQ:Question
+    internal class MCQ : Question
     {
-        public Answers[] AnswerList {  get; set; }
+        public override string Header => "MCQ Question";
 
         public MCQ()
         {
-            Header = "MCQ Quetion";
-            AnswerList = new Answers[3];
-            AnswerList[0].Id = 1;
-            AnswerList[1].Id = 2;
-            AnswerList[2].Id = 3;
+           
         }
-        public MCQ(string header, string body, int mark, int rightAnswerId, Answers[] answerList):base(header, body, mark, rightAnswerId)
+
+        public MCQ(string? body, int mark, Answers[]? answersList, Answers? rightAnswer):base(body, mark, answersList, rightAnswer) 
         {
-            this.AnswerList = answerList;
+
+        }
+
+        public override string ToString()
+        {
+            return $"{Header}\n{Body}\n {Mark}\n{AnswersList[0]?.AnswerId}\n{AnswersList[1]?.AnswerId}\n{AnswersList[2]?.AnswerId}\n{RightAnswer}";
         }
     }
 }

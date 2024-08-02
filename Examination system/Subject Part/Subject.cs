@@ -10,51 +10,48 @@ namespace Examination_system.Subject_Part
 {
     internal class Subject
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public Exam? ExamOfTheSubject { get; set; }
-        public Subject()
+        public int SubjectId { get; set; }
+        public string? SubjectName { get; set; }
+        public Exam? ExamOfSubject { get; set; }
+
+        public void CreateSubjectExam()
         {
-            Name = string.Empty;
-        }
-        public Subject(int Id, string Name)
-        {
-            this.Id = Id;
-            this.Name = Name;
-        }
-        public void CreatExam()
-        {
-            int Choice;
+            int Choice, N, T;
+            char ch;
             do
             {
                 Console.WriteLine("Please Enter The Type Of Exam(1 for Practical | 2 for Final)");
 
             } while (!(int.TryParse(Console.ReadLine(), out Choice)) || Choice < 1 || Choice > 2);
+            
+            do
+            {
+                Console.WriteLine("Please Enter the Time For Exam From(30 min to 180 min):");
+            } while (!int.TryParse(Console.ReadLine(), out T) || T < 30 || T > 180);
 
+            do
+            {
+                Console.WriteLine("Please Enter Number Of Questions:");
+            } while (!int.TryParse(Console.ReadLine(), out N));
+            
             switch (Choice)
             {
                 case 1:
-                    //Exam practicalExam = new PracticalExam();
-
-
+                    {
+                        Exam practicalExam = new PracticalExam();
+                        practicalExam.TimeOfExam = T;
+                        practicalExam.NumberOfQuestion = N;
+                        practicalExam.BuildExam();
+                    }
                     break;
                 case 2:
                     {
-                        int N, T;
-                        do
-                        {
-                            Console.WriteLine("Please Enter the Time For Exam From(30 min to 180 min):"); // validation 
-                        } while (!int.TryParse(Console.ReadLine(), out T) || T < 30 || T > 180);
-
-                        do
-                        {
-                            Console.WriteLine("Please Enter Number Of Questions:");
-                        } while (!int.TryParse(Console.ReadLine(), out N));
-
-                        FinalExam finalExam = new FinalExam(T, N);
-                        finalExam.ShowExam();
-                        break;
+                        Exam finalExam = new FinalExam();
+                        finalExam.TimeOfExam = T;
+                        finalExam.NumberOfQuestion = N;
+                        finalExam.BuildExam();
                     }
+                    break;
 
             }
         }

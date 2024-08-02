@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,39 +10,24 @@ namespace Examination_system.Exam_Part
 {
     internal class FinalExam : Exam
     {
-        public MCQ[] MCQ_Questions {  get; set; }
-        public TreuOrFalse[] TF_Questions { get; set; }
+        public MCQ[]? MCQ_Questions { get; set; }
+        public TrueOrFalse[]? TF_Questions {  get; set; }
 
         public FinalExam()
         {
-            MCQ_Questions = new MCQ[NumbersOfQuestion];
-            TF_Questions = new TreuOrFalse[NumbersOfQuestion];
-        }
-        public FinalExam(int TimeOfExam, int NumbersOfQuetions):base(TimeOfExam, NumbersOfQuetions)
-        {
-            this.MCQ_Questions = new MCQ[NumbersOfQuestion];
-            this.TF_Questions = new TreuOrFalse[NumbersOfQuestion];
-        }
-        public FinalExam(int TimeOfExam, int NumbersOfQuetions, MCQ[] MCQ_Questions, TreuOrFalse[] TF_Questions):base(TimeOfExam, NumbersOfQuetions)
-        {
-            this.MCQ_Questions = MCQ_Questions;
-            this.TF_Questions = TF_Questions;
-        }
-        public override void ShowExam()
-        {
-            #region 1
             
+        }
+        
+        public override void BuildExam()
+        {
+            int c; 
 
-           // this.NumbersOfQuestion = N;
+            MCQ_Questions = new MCQ[NumberOfQuestion];
+            TF_Questions = new TrueOrFalse[NumberOfQuestion];
 
-            #endregion
-           
-            Console.Clear();
-
-            #region 2
-            for (int i = 0; i < this.NumbersOfQuestion; i++)
+            for (int i = 0; i < NumberOfQuestion; i++)
             {
-                int c;
+                Console.Clear();
                 do
                 {
                     Console.WriteLine("Please Enter Type Of Question: (1 for MCQ | 2 for true or false): ");
@@ -50,50 +37,27 @@ namespace Examination_system.Exam_Part
                 {
                     case 1:
                         {
-                            int M, R_Ans; string B, Ans;
-                            Console.Clear();
-                            Console.WriteLine(MCQ_Questions[i].Header);
-
-                            do
-                            {
-                                Console.WriteLine("Please Enter Question Body:");
-                                B = Console.ReadLine()!;
-                            } while (string.IsNullOrEmpty(B) || string.IsNullOrWhiteSpace(B));
-
-                            this.MCQ_Questions[i].Body = B;
-
-                            do
-                            {
-                                Console.WriteLine("Please Enter Question Mark: ");
-                            } while (!int.TryParse(Console.ReadLine(), out M));
-
-                            this.MCQ_Questions[i].Mark = M;
-
-                            for (int j = 0; j < this.MCQ_Questions[i].AnswerList.Length; j++)
-                            {
-                                do
-                                {
-                                    Console.WriteLine($"Please Enter Choice Number {this.MCQ_Questions[i].AnswerList[j].Id}");
-                                    Ans = Console.ReadLine()!;
-                                } while (Ans is null);
-
-                                this.MCQ_Questions[i].AnswerList[j].Text = Ans;
-                            }
-
-                            do
-                            {
-                                Console.WriteLine("Please Enter The Right Answer Id: ");
-                            } while (!int.TryParse(Console.ReadLine(), out R_Ans));
-                            this.MCQ_Questions[i].RightAnswerId = R_Ans;
+                            MCQ_Questions[i] = new MCQ();
+                            MCQ_Questions[i] = Helper.BuildMCQ_Q();
                         }
                         break;
                     case 2:
-
+                        {
+                            TF_Questions[i] = new TrueOrFalse();
+                            TF_Questions[i] = Helper.BuildTF_Q();
+                        }
                         break;
                 }
             }
-            #endregion
-
         }
+        public override void StartExam()
+        {
+            // Starting the exam
+        }
+        public override void ShowExamResult()
+        {
+            //Show Exam Result
+        }
+
     }
 }

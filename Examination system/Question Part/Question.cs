@@ -4,25 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Examination_system
+namespace Examination_system.Question_Part
 {
-    internal class Question
+    abstract class Question
     {
-        public string Header { get; set; }
-        public string Body { get; set; }
-        public int Mark {  get; set; }
-        public int RightAnswerId {  get; set; }
-        public Question()
+        public abstract string Header { get; }
+        public string? Body { get; set; }
+        public int Mark { get; set; }
+        public Answers[]? AnswersList {  get; set; }
+        public Answers? RightAnswer { get; set; }
+        
+
+        public Question() { }
+
+        public Question(string? body, int mark, Answers[]? answersList, Answers? rightAnswer)
         {
-            Header = string.Empty;
-            Body = string.Empty;
-        }
-        public Question(string header, string body, int mark, int rightAnswerId)
-        {
-            Header = header;
             Body = body;
             Mark = mark;
-            RightAnswerId = rightAnswerId;
+            AnswersList = answersList;
+            RightAnswer = rightAnswer;
         }
     }
 }

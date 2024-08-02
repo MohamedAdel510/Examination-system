@@ -8,17 +8,19 @@ namespace Examination_system.Exam_Part
 {
     abstract class Exam
     {
-        public int TimeOfExam {  get; set; }
-        public int NumbersOfQuestion {  get; set; }
+        public int TimeOfExam { get; set; }
+        public int NumberOfQuestion {  get; set; }
+        public Answers[]? StudenAnswers { get; set; }
+        public int Grade {  get; set; }
 
-        public Exam() { }
-
-        public Exam(int TimeOfExam, int NumbersOfQuestion)
+        public Exam()
         {
-            this.TimeOfExam = TimeOfExam;
-            this.NumbersOfQuestion = NumbersOfQuestion;
+            StudenAnswers = new Answers[NumberOfQuestion];
+            Grade = 0;
         }
 
-        public abstract void ShowExam();
+        public abstract void BuildExam();
+        public abstract void StartExam();
+        public abstract void ShowExamResult();
     }
 }

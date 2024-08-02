@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,16 +9,18 @@ namespace Examination_system
 {
     internal class Answers
     {
-        public int Id {  get; set; }
-        public string Text { get; set; }
+        public int AnswerId {  get; set; }
+        public string AnswerText { get; set; }
+
         public Answers()
         {
-            Text = string.Empty;
+            AnswerText = string.Empty;
         }
-        public Answers(int id, string text)
+        
+        public Answers(int AnswerId, string AnswerText)
         {
-            Id = id;
-            Text = text;
+            this.AnswerId = AnswerId;
+            this.AnswerText = AnswerText;
         }
     }
 }
