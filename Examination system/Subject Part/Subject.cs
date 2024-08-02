@@ -14,46 +14,33 @@ namespace Examination_system.Subject_Part
         public string? SubjectName { get; set; }
         public Exam? ExamOfSubject { get; set; }
 
+        public Subject() { }
+        public Subject(int SubjectId, string SubjectName)
+        {
+            this.SubjectId = SubjectId;
+            this.SubjectName = SubjectName;
+        }
         public void CreateSubjectExam()
         {
-            int Choice, N, T;
-            char ch;
-            do
+            ExamOfSubject = SubjectManager.ChosingExamType();
+            ExamOfSubject?.BuildExam();
+            //ExamOfSubject?.StartExam();
+            switch (SubjectManager.CheckForStartExam())
             {
-                Console.WriteLine("Please Enter The Type Of Exam(1 for Practical | 2 for Final)");
-
-            } while (!(int.TryParse(Console.ReadLine(), out Choice)) || Choice < 1 || Choice > 2);
-            
-            do
-            {
-                Console.WriteLine("Please Enter the Time For Exam From(30 min to 180 min):");
-            } while (!int.TryParse(Console.ReadLine(), out T) || T < 30 || T > 180);
-
-            do
-            {
-                Console.WriteLine("Please Enter Number Of Questions:");
-            } while (!int.TryParse(Console.ReadLine(), out N));
-            
-            switch (Choice)
-            {
-                case 1:
+                case 'Y':
                     {
-                        Exam practicalExam = new PracticalExam();
-                        practicalExam.TimeOfExam = T;
-                        practicalExam.NumberOfQuestion = N;
-                        practicalExam.BuildExam();
+                        ExamOfSubject?.StartExam();
                     }
                     break;
-                case 2:
+                case 'N':
                     {
-                        Exam finalExam = new FinalExam();
-                        finalExam.TimeOfExam = T;
-                        finalExam.NumberOfQuestion = N;
-                        finalExam.BuildExam();
+                        Environment.Exit(0);
                     }
                     break;
-
             }
+
         }
+
+
     }
 }

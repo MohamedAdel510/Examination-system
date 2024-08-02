@@ -1,12 +1,14 @@
-﻿using System;
+﻿using Examination_system.Question_Part;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Examination_system.Exam_Part
 {
-    internal class Helper
+    static class ExamManager
     {
         public static MCQ BuildMCQ_Q()
         {
@@ -105,6 +107,44 @@ namespace Examination_system.Exam_Part
                 AnswersList = answersList,
                 RightAnswer = rightAnswer
             };
+        }
+
+        
+        public static void StartQuestions(Question[]? Questions, Answers[]? StudenAnswers, int Grade)
+        {
+            int AnsId;
+            if (Questions is not null)
+            {
+                for (int i = 0; i < Questions.Length; i++)
+                {
+                    if (Questions[i] is not null)
+                    {
+                        Console.WriteLine($"{Questions[i]?.Header}\tMark {Questions[i]?.Mark}");
+                        Console.WriteLine();
+                        Console.WriteLine(Questions[i]?.Body);
+
+                        for (int j = 0; j < Questions[i]?.AnswersList?.Length; j++)
+                        {
+                            Console.WriteLine($"{Questions[i]?.AnswersList[j]?.AnswerId}-{Questions[i]?.AnswersList[j]?.AnswerText}");
+                        }
+
+                        Console.WriteLine();
+
+                        do
+                        {
+                            Console.WriteLine("Please Enter The Answer Id");
+                        } while (!(int.TryParse(Console.ReadLine(), out AnsId)) || AnsId < 1 || AnsId > 3);
+
+                        StudenAnswers[i] = new Answers() { AnswerId = AnsId, AnswerText = Questions[i]?.AnswersList[AnsId - 1]?.AnswerText };
+
+                        if (StudenAnswers[i].AnswerId == Questions[i]?.RightAnswer?.AnswerId)
+                        {
+                            Grade += Questions[i].Mark;
+                        }
+                    }
+                    continue;   
+                }
+            }
         }
     }
 }

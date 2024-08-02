@@ -22,18 +22,19 @@ namespace Examination_system.Exam_Part
             {
                 Console.Clear();
                 MCQ_Questions[i] = new MCQ();
-                MCQ_Questions[i] = Helper.BuildMCQ_Q();
+                MCQ_Questions[i] = ExamManager.BuildMCQ_Q();
             }
         }
+        public override void StartExam()
+        {
+            StudenAnswers = new Answers[NumberOfQuestion];
 
+            ExamManager.StartQuestions(MCQ_Questions, StudenAnswers, Grade);
+        }
         public override void ShowExamResult()
         {
             
         }
 
-        public override void StartExam()
-        {
-            
-        }
     }
 }

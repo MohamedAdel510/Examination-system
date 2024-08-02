@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Examination_system.Question_Part;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -12,6 +13,7 @@ namespace Examination_system.Exam_Part
     {
         public MCQ[]? MCQ_Questions { get; set; }
         public TrueOrFalse[]? TF_Questions {  get; set; }
+        
 
         public FinalExam()
         {
@@ -38,13 +40,13 @@ namespace Examination_system.Exam_Part
                     case 1:
                         {
                             MCQ_Questions[i] = new MCQ();
-                            MCQ_Questions[i] = Helper.BuildMCQ_Q();
+                            MCQ_Questions[i] = ExamManager.BuildMCQ_Q();
                         }
                         break;
                     case 2:
                         {
                             TF_Questions[i] = new TrueOrFalse();
-                            TF_Questions[i] = Helper.BuildTF_Q();
+                            TF_Questions[i] = ExamManager.BuildTF_Q();
                         }
                         break;
                 }
@@ -52,7 +54,11 @@ namespace Examination_system.Exam_Part
         }
         public override void StartExam()
         {
-            // Starting the exam
+            StudenAnswers = new Answers[NumberOfQuestion];
+
+            ExamManager.StartQuestions(MCQ_Questions, StudenAnswers, Grade);
+
+            ExamManager.StartQuestions(TF_Questions, StudenAnswers, Grade);
         }
         public override void ShowExamResult()
         {
