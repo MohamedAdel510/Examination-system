@@ -109,8 +109,7 @@ namespace Examination_system.Exam_Part
             };
         }
 
-        
-        public static void StartQuestions(Question[]? Questions, Answers[]? StudenAnswers, int Grade)
+        public static void StartQuestions(Question[]? Questions, Answers[]? StudenAnswers,  int Grade)
         {
             int AnsId;
             if (Questions is not null)
@@ -145,6 +144,26 @@ namespace Examination_system.Exam_Part
                     continue;   
                 }
             }
+        }
+        
+        public static int ShowQuestionsResult(Question[]? Questions, Answers[]? StudenAnswers)
+        {
+            int TotalMark = 0;
+            if(Questions is not null)
+            {
+                for(int i = 0; i < Questions.Length; i++)
+                {
+                    if (Questions[i] is not null)
+                    {
+                        Console.WriteLine($"Question {i + 1}: {Questions[i].Body}");
+                        Console.WriteLine($"Your Answer => {StudenAnswers[i]?.AnswerText}");
+                        Console.WriteLine($"Right Answer => {Questions[i].RightAnswer?.AnswerText}");
+                        TotalMark += Questions[i].Mark;
+                    }
+                    continue;
+                }
+            }
+            return TotalMark;
         }
     }
 }

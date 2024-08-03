@@ -56,13 +56,17 @@ namespace Examination_system.Exam_Part
         {
             StudenAnswers = new Answers[NumberOfQuestion];
 
-            ExamManager.StartQuestions(MCQ_Questions, StudenAnswers, Grade);
+            ExamManager.StartQuestions(MCQ_Questions, StudenAnswers,  Grade);
 
             ExamManager.StartQuestions(TF_Questions, StudenAnswers, Grade);
         }
         public override void ShowExamResult()
         {
-            //Show Exam Result
+            int TotalMcqMark = ExamManager.ShowQuestionsResult(MCQ_Questions, StudenAnswers);
+            int TotaltFMark = ExamManager.ShowQuestionsResult(TF_Questions, StudenAnswers);
+            int TotalMark = TotalMcqMark + TotaltFMark;
+            Console.WriteLine($"Your Grade is {Grade} From {TotalMark}");
+            Console.WriteLine("Thank You");
         }
 
     }

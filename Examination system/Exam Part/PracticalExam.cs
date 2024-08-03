@@ -33,7 +33,9 @@ namespace Examination_system.Exam_Part
         }
         public override void ShowExamResult()
         {
-            
+            int TotalMark = ExamManager.ShowQuestionsResult(MCQ_Questions, StudenAnswers);
+            Console.WriteLine($"Your Grade is {Grade} From {TotalMark}");
+            Console.WriteLine("Thank You");
         }
 
     }

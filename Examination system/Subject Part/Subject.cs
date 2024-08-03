@@ -24,11 +24,11 @@ namespace Examination_system.Subject_Part
         {
             ExamOfSubject = SubjectManager.ChosingExamType();
             ExamOfSubject?.BuildExam();
-            //ExamOfSubject?.StartExam();
             switch (SubjectManager.CheckForStartExam())
             {
                 case 'Y':
                     {
+                        Console.Clear();
                         ExamOfSubject?.StartExam();
                     }
                     break;
@@ -38,6 +38,8 @@ namespace Examination_system.Subject_Part
                     }
                     break;
             }
+            Console.Clear();
+            ExamOfSubject?.ShowExamResult();
 
         }
 
