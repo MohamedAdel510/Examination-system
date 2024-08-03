@@ -11,8 +11,15 @@ namespace Examination_system.Exam_Part
         public int TimeOfExam { get; set; }
         public int NumberOfQuestion {  get; set; }
         public Answers[]? StudenAnswers { get; set; }
-        public int Grade {  get; set; }
+        // public int Grade {  get; set; }
 
+        private protected int grade;
+
+        public int Grade
+        {
+            set { grade = value; }
+            get { return grade; }
+        }
         public Exam()
         {
             StudenAnswers = new Answers[NumberOfQuestion];

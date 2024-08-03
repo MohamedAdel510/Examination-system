@@ -29,7 +29,7 @@ namespace Examination_system.Exam_Part
         {
             StudenAnswers = new Answers[NumberOfQuestion];
 
-            ExamManager.StartQuestions(MCQ_Questions, StudenAnswers, Grade);
+            ExamManager.StartQuestions(MCQ_Questions, StudenAnswers, ref grade);
         }
         public override void ShowExamResult()
         {

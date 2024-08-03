@@ -55,10 +55,10 @@ namespace Examination_system.Exam_Part
         public override void StartExam()
         {
             StudenAnswers = new Answers[NumberOfQuestion];
+            
+            ExamManager.StartQuestions(MCQ_Questions, StudenAnswers, ref grade);
 
-            ExamManager.StartQuestions(MCQ_Questions, StudenAnswers,  Grade);
-
-            ExamManager.StartQuestions(TF_Questions, StudenAnswers, Grade);
+            ExamManager.StartQuestions(TF_Questions, StudenAnswers, ref grade);
         }
         public override void ShowExamResult()
         {

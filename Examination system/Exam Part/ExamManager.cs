@@ -109,7 +109,7 @@ namespace Examination_system.Exam_Part
             };
         }
 
-        public static void StartQuestions(Question[]? Questions, Answers[]? StudenAnswers,  int Grade)
+        public static void StartQuestions(Question[]? Questions, Answers[]? StudenAnswers, ref int Grade)
         {
             int AnsId;
             if (Questions is not null)
