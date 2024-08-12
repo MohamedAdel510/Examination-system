@@ -19,7 +19,6 @@ namespace Examination_system.Exam_Part
         {
             
         }
-        
         public override void BuildExam()
         {
             int c; 
@@ -68,6 +67,5 @@ namespace Examination_system.Exam_Part
             Console.WriteLine($"Your Grade is {Grade} From {TotalMark}");
             Console.WriteLine("Thank You");
         }
-
     }
 }
