@@ -32,7 +32,7 @@ namespace Examination_system.Exam_Part
             do
             {
                 Console.WriteLine("Please Enter Question Mark: ");
-            } while (!int.TryParse(Console.ReadLine(), out QMark) || QMark < 1);
+            } while (!(int.TryParse(Console.ReadLine(), out QMark)) || QMark < 1);
 
             Console.WriteLine("Choices of Question");
 
@@ -89,7 +89,7 @@ namespace Examination_system.Exam_Part
             do
             {
                 Console.WriteLine("Please Enter Question Mark: ");
-            } while (!int.TryParse(Console.ReadLine(), out QMark) || QMark < 1);
+            } while (!(int.TryParse(Console.ReadLine(), out QMark)) || QMark < 1);
 
             // Entring Right Answer
             do
